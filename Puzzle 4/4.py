@@ -4,11 +4,8 @@ import random
 
 import requests
 
-# HINT:  Could not choose a best candidate operator. You might need to add explicit type casts.
-
 # x = requests.post("https://gradebase.hackmit.academy/u/Vivswan_5c6aaa/reset")
 url = 'https://gradebase.hackmit.academy/u/Vivswan_5c6aaa/login'
-# data = {'username': 'Vivswan_5c6aaa'}
 users = ["noam_chomsky", 'john_doe', 'elonos_mosquitos', 'melon_usk', 'Vivswan_5c6aaa']
 columns = ['id', 'username', 'year', 'gender', 'favorite_color', 'password_66bc6bb8']
 
@@ -38,3 +35,5 @@ for i in x.text.split("\n"):
     if i.__contains__("Year"):
         columns.append(i.replace("Year:", "").replace("<h5>", "").replace("</h5>", "").strip())
         print(columns)
+
+# password: "BpAU-QIvdO6NAkES3SkJzNe7K4I="
