@@ -1,8 +1,10 @@
+import re
+
 import requests
 
 username = 'Vivswan_1f372a'
 url = f'https://lockdown.hackmit.academy/api/{username}'
-filename = '4.asm'
+filename = '5.asm'
 
 file = open(filename, 'r')
 text = file.read()
@@ -29,9 +31,10 @@ def parse_execution(param):
 
 def execute_run(multipler):
     global run_result
-    run_result = requests.post(f"{url}/run", json={
-        'code': text.replace('&&', str(multipler))
-    }).json()
+    jj ={
+        'code': re.sub(rf', [0-9]+ #;&&', f" {multipler}", text)
+    }
+    run_result = requests.post(f"{url}/run", json=jj).json()
 
     if len(run_result['error']) > 0:
         print(run_result['error'])
@@ -44,7 +47,7 @@ def execute_run(multipler):
 
 index = 0
 while True:
-    ans = execute_run(index)['regs'][18]
+    ans = execute_run(index)['regs'][1]
 
     ans = int(ans[ans.find('=') + 1:].strip())
 

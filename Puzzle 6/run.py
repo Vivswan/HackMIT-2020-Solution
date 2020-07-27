@@ -1,7 +1,7 @@
 import requests
 
 url = 'https://lockdown.hackmit.academy/api/Vivswan_1f372a'
-filename = '4.asm'
+filename = '5.asm'
 
 file = open(filename, 'r')
 lines = file.readlines()
@@ -51,6 +51,9 @@ def print_run():
 
     if run_result is None:
         return None
+
+    print(f"cycles: {run_result['count']}")
+    print()
 
     arr_regs = run_result['regs']
     for reg_index in range(0, len(arr_regs)):
