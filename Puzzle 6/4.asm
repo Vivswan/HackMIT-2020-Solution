@@ -5,13 +5,13 @@
 #;   Key offset: 6, 12, 18...
 
 store_char_array_start:
-            addi            r9, r0, 30       #; index
-            addi            r10, r0, 128     #; max
+            addi            r9, r0, 0        #; r9 : index (i)
+            addi            r10, r0, 128     #; r10 : max value
 store_char_array:
             muli            r11, r9, 4
             sb              r9, 0(r11)
 
-            addi            r9, r9, 1       #; i++
+            addi            r9, r9, 1        #; i++
             bge             r9, r10 store_char_array_end
             jal             r1, store_char_array
 store_char_array_end:
@@ -25,13 +25,15 @@ store_char_array_end:
 
 
 check_char_start:
-            addi            r10, r0, 1
-            addi            r3, r0, 30       #; index
+            addi            r10, r0, 1      #; id for exception
             addi            r6, r0, 128     #; max
             addi            r9, r0, 4       #; max time
+            
+            addi            r3, r0, 0       #; index
 
 location_to_access:
             addi            r12, r0, 6
+            #; set the multiplier for r15 to get that char of string
             muli            r15, r12, &&
             addi            r2, r15, 104448
 
@@ -54,10 +56,10 @@ exception_1:
 
             addi            r3, r3, 1       #; i++
             bge             r3, r6 check_char_end
-            jal             r31, check_char
+            jal             r1, check_char
 
 check_char_success:
-            addi            r21, r0, 1
+            addi            r10, r0, 0
             addi            r18, r3, 0
 
 check_char_end:
@@ -65,8 +67,7 @@ check_char_end:
 
 
 exception:
-            beq             r10, r0 end
-
             addi            r25, r0, 1
             beq             r10, r25 exception_1
 end:
+#; secret character will show up in "r18" in ascii format

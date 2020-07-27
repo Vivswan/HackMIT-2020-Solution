@@ -3,17 +3,9 @@
 #;
 #; Key Location: 102 KB or 104447
 #;   Key offset: 6, 12, 18...
-#;
-#;  r0       = 0
-#;  r1 - r2  = addressing
-#;       r18 = location id
-#;       r19 = temp
-#; r21 - r23 = calculation of cycle counter
-#; r24 - r29 = cycle counter
-#;       r29 = temp cycle counter
 
 store_char_array_start:
-            addi            r9, r0, 30       #; index
+            addi            r9, r0, 0        #; index
             addi            r10, r0, 128     #; max
 store_char_array:
             muli            r11, r9, 4
@@ -33,7 +25,7 @@ store_char_array_end:
 
 
 check_char_start:
-            addi            r3, r0, 30       #; index
+            addi            r3, r0, 0       #; index
             addi            r6, r0, 128     #; max
             addi            r9, r0, 4       #; max time
 
