@@ -1,1 +1,1 @@
-# HackMIT-2020-Solution
+# HackMIT 2020 Puzzles Solution
